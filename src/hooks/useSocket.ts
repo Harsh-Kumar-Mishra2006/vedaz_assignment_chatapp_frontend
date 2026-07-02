@@ -1,4 +1,3 @@
-//hooks/useSocket.ts
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { type Message } from '../types';
@@ -10,29 +9,47 @@ export const useSocket = () => {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
+    console.log('🔄 Connecting to Socket.IO at:', SOCKET_URL);
+    
     socketRef.current = io(SOCKET_URL, {
-      transports: ['websocket'],
+      transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: 10,
       reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      timeout: 20000,
+      path: '/socket.io', // Ensure this matches backend
+      forceNew: true,
     });
 
     socketRef.current.on('connect', () => {
-      console.log('✅ Socket connected');
+      console.log('✅ Socket connected to:', SOCKET_URL);
       setIsConnected(true);
       toast.success('Connected to chat server');
     });
 
-    socketRef.current.on('disconnect', () => {
-      console.log('❌ Socket disconnected');
+    socketRef.current.on('disconnect', (reason) => {
+      console.log('❌ Socket disconnected:', reason);
       setIsConnected(false);
-      toast.error('Disconnected from chat server');
+      if (reason !== 'io client disconnect') {
+        toast.error('Disconnected from chat server');
+      }
     });
 
     socketRef.current.on('connect_error', (error) => {
-      console.error('Socket connection error:', error);
+      console.error('❌ Socket connection error:', error);
+      console.error('📍 Connection URL:', SOCKET_URL);
       setIsConnected(false);
-      toast.error('Failed to connect to chat server');
+      // Don't show toast for every connection attempt to avoid spam
+    });
+
+    socketRef.current.on('reconnect_attempt', (attempt) => {
+      console.log(`🔄 Reconnection attempt ${attempt}`);
+    });
+
+    socketRef.current.on('reconnect', () => {
+      console.log('✅ Socket reconnected');
+      toast.success('Reconnected to chat server');
     });
 
     return () => {
