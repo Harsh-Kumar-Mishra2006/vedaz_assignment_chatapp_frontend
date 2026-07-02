@@ -1,3 +1,4 @@
+//App.tsx
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider, useAuth } from "./context/AuthContext";

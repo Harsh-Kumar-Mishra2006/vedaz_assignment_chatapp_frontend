@@ -1,3 +1,4 @@
+//components/TypingIndicator.tsx
 import React from "react";
 
 interface TypingIndicatorProps {

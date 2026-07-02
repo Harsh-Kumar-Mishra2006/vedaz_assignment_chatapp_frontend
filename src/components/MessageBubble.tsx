@@ -1,3 +1,4 @@
+//components/MessageBubble.tsx
 import React from "react";
 import { format } from "date-fns";
 import { type Message } from "../types";

@@ -1,3 +1,4 @@
+//components/MessageInput.tsx
 import React, { useState, useRef, useEffect } from "react";
 
 interface MessageInputProps {

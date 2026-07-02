@@ -1,3 +1,4 @@
+//types/index.ts
 export interface Message {
   id?: string;
   _id?: string;
