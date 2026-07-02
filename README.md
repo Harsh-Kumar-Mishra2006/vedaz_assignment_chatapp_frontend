@@ -134,7 +134,7 @@ chat-app-frontend/
 Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/Harsh-Kumar-Mishra2006/vedaz_assignment_chatapp_frontend>
 ```
 
 Move inside frontend
@@ -151,20 +151,6 @@ npm install
 
 ---
 
-# 📄 Environment Variables
-
-Create a `.env` file inside the project root.
-
-```env
-REACT_APP_API_URL=http://localhost:3000
-
-REACT_APP_SOCKET_URL=http://localhost:3000
-```
-
-If `REACT_APP_SOCKET_URL` is not provided, the application automatically uses `REACT_APP_API_URL`.
-
----
-
 # ▶️ Run the Application
 
 Development
@@ -177,18 +163,6 @@ Build
 
 ```bash
 npm run build
-```
-
-Preview Production Build
-
-```bash
-npm run preview
-```
-
-Lint
-
-```bash
-npm run lint
 ```
 
 ---
@@ -576,28 +550,21 @@ postcss
 
 # 🚀 Future Improvements
 
-- JWT Authentication
-- User Avatars
-- Emoji Picker
-- File & Image Sharing
-- Dark Mode
+- User Authentication (JWT)
+- Online/Offline User Status
+- Private Messaging
 - Group Chats
-- Message Reactions
 - Read Receipts
-- Online Users List
-- Push Notifications
-- Voice Messages
-- Video Calling
-- Message Search
-- Infinite Chat History
-- Message Editing & Deletion
+- Message Deletion
+- Media/File Sharing
+- Image Upload Support
+- Redis Adapter for Horizontal Scaling
+- Docker Support
 
 ---
 
 # 👨‍💻 Author
 
 **Harsh Kumar Mishra**
-
-Frontend Developer
 
 Built with **React**, **TypeScript**, **Vite**, **Tailwind CSS**, and **Socket.IO Client**.

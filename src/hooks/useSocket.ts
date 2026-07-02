@@ -1,3 +1,4 @@
+//hooks/useSocket.ts
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { type Message } from '../types';
